@@ -3,10 +3,11 @@ import type { Metadata } from 'next';
 import { DestinationDetail } from '@/components/destination-detail';
 import { featuredDestinations } from '@/lib/mock-data';
 
-interface PageProps {
+type PageProps = {
   params: {
     slug: string;
   };
+  searchParams: Record<string, string | string[] | undefined>;
 }
 
 export function generateStaticParams() {
