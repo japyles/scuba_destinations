@@ -2,10 +2,11 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { DestinationDetail } from '@/components/destination-detail';
 import { featuredDestinations } from '@/lib/mock-data';
+import { NextPage } from 'next'
 
 type PageProps = {
   params: {
-    slug: string;
+    slug: string | string[];
   };
   searchParams: Record<string, string | string[] | undefined>;
 }
@@ -32,7 +33,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
   };
 }
 
-export default function DestinationPage({ params }: PageProps) {
+const DestinationPage: NextPage<PageProps> = ({ params }) => {
   const destination = featuredDestinations.find(d => d.slug === params.slug);
 
   if (!destination) {
@@ -40,4 +41,6 @@ export default function DestinationPage({ params }: PageProps) {
   }
 
   return <DestinationDetail destination={destination} />;
-}
+};
+
+export default DestinationPage;
