@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import type { Metadata } from 'next/metadata';
+import type { Metadata } from 'next';
 import { DestinationDetail } from '@/components/destination-detail';
 import { featuredDestinations } from '@/lib/mock-data';
 
