@@ -3,20 +3,13 @@ import type { Metadata } from 'next';
 import { DestinationDetail } from '@/components/destination-detail';
 import { featuredDestinations } from '@/lib/mock-data';
 
-type Props = {
-  params: {
-    slug: string;
-  };
-  searchParams?: Record<string, string | string[] | undefined>;
-}
-
 export function generateStaticParams() {
   return featuredDestinations.map((destination) => ({
     slug: destination.slug,
   }));
 }
 
-export function generateMetadata({ params }: Props): Metadata {
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const destination = featuredDestinations.find(d => d.slug === params.slug);
   
   if (!destination) {
@@ -32,7 +25,7 @@ export function generateMetadata({ params }: Props): Metadata {
   };
 }
 
-export default function DestinationPage({ params }: Props) {
+export default function DestinationPage({ params }: { params: { slug: string } }) {
   const destination = featuredDestinations.find(d => d.slug === params.slug);
 
   if (!destination) {
