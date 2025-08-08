@@ -2,13 +2,12 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { DestinationDetail } from '@/components/destination-detail';
 import { featuredDestinations } from '@/lib/mock-data';
-import { NextPage } from 'next'
 
-type PageProps = {
+type Props = {
   params: {
-    slug: string | string[];
+    slug: string;
   };
-  searchParams: Record<string, string | string[] | undefined>;
+  searchParams?: Record<string, string | string[] | undefined>;
 }
 
 export function generateStaticParams() {
@@ -17,7 +16,7 @@ export function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }: PageProps): Metadata {
+export function generateMetadata({ params }: Props): Metadata {
   const destination = featuredDestinations.find(d => d.slug === params.slug);
   
   if (!destination) {
@@ -33,7 +32,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
   };
 }
 
-const DestinationPage: NextPage<PageProps> = ({ params }) => {
+export default function DestinationPage({ params }: Props) {
   const destination = featuredDestinations.find(d => d.slug === params.slug);
 
   if (!destination) {
@@ -41,6 +40,4 @@ const DestinationPage: NextPage<PageProps> = ({ params }) => {
   }
 
   return <DestinationDetail destination={destination} />;
-};
-
-export default DestinationPage;
+}
