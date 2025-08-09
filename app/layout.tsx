@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Navigation } from '@/components/navigation';
+import { earthyNautical, vtksAzeitona } from './fonts';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${earthyNautical.variable} ${vtksAzeitona.variable}`}>
       <body className={`${inter.className} antialiased`}>
         <ThemeProvider
           attribute="class"

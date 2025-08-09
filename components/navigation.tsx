@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { Sun, Moon, Menu, X, Waves } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -43,21 +44,22 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 group">
+          <Link href="/" className="flex items-center space-x-4 group">
             <motion.div
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.6 }}
-              className="p-2 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg"
+              className="p-2 rounded-full shadow-lg"
             >
-              <Waves className="w-6 h-6 text-white" />
+              <Image src='/scuba_destination_logo_nobg.png' width={50} height={50} alt='Scuba Destination Logo' />
+              {/* <Waves className="w-6 h-6 text-white" /> */}
             </motion.div>
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-400 dark:to-cyan-400 bg-clip-text text-transparent">
+            <span className="text-3xl tracking-widest font-bold bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-400 dark:to-cyan-400 bg-clip-text text-transparent" style={{ fontFamily: 'var(--font-vtks-azeitona)' }}>
               Deep Blue Destinations
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8">
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href}>
                 <motion.span
@@ -82,7 +84,7 @@ export function Navigation() {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-2">
+          <div className="lg:hidden flex items-center space-x-2">
             <Button
               variant="ghost"
               size="sm"
@@ -112,7 +114,7 @@ export function Navigation() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden backdrop-blur-xl bg-white/20 dark:bg-slate-900/20 border-t border-white/20 dark:border-slate-700/20"
+            className="lg:hidden backdrop-blur-xl bg-white/20 dark:bg-slate-900/20 border-t border-white/20 dark:border-slate-700/20"
           >
             <div className="px-4 py-4 space-y-2">
               {navLinks.map((link, index) => (

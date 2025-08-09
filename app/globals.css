@@ -79,6 +79,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  h1 {
+    font-family: var(--font-earthy-nautical);
+  }
 }
 
 /* Custom glassmorphism utilities */
